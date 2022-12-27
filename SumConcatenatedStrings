@@ -1,0 +1,23 @@
+//_____________sum_concatenated_string_______________
+//for an array of positive integers 'a', calculate the sum of every possible permutation of concatenated elements in 'a'. a = [10,2] == 1344
+
+func sumConcatenatedStringElements(_ a:[Int]) -> Int {
+    var low = 0
+    var offsetSum = 0
+    
+    for i in 0..<a.count {
+        low += a[i]
+        let size = String(a[i]).count
+        offsetSum += iPow(10, size)
+    }
+    return low * a.count + low * offsetSum
+}
+
+func iPow(_ base: Int, _ power: Int) -> Int {
+    var result = 1
+    for _ in 1...power {
+        result *= base
+    }
+    return result
+}
+print("sumConcatenatedStringElements = \(sumConcatenatedStringElements([10,2]))")
