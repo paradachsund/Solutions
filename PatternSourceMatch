@@ -1,0 +1,29 @@
+//_____________pattern_source_pattern_match_______________
+//for two strings, pattern and source, the former containing only 0's and 1's and the latter only lowercase text, calculate the number of substrings of source that match the following - equal length, for each 0 in pattern, corresponding letter in substring is vowel (y inclusive), for each 1 in pattern, corresponding letter in substring is consonant
+
+func solution(_ pattern:String, _ source: String) -> Int {
+    var answer = 0
+    for i in 0..<source.count - pattern.count + 1 {
+        answer += checkPatternMatch(pattern, source, index: i)
+    }
+    return answer
+}
+
+func checkPatternMatch(_ pattern: String, _ source: String, index:Int) -> Int {
+    let vowels: [Character] = ["a", "e", "i", "o", "u", "y"]
+    let p = Array(pattern)
+    let s = Array(source)
+    for offset in 0..<pattern.count {
+        if p[offset] == "0" {
+            if !vowels.contains(s[offset + index]) {
+                return 0
+            }
+        } else {
+            if vowels.contains(s[offset + index]) {
+                return 0
+            }
+        }
+    }
+    return 1
+}
+//print("patternsource = \(solution("0101", "abab"))")//1
