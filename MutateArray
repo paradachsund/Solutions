@@ -1,0 +1,15 @@
+//_____________Mutate_Array_______________
+//for an array of integers a, mutate a new array 'b' of the same length where b[i] = a[i-1] + a[i] + a[i+1], of which are considered 0 if the elements don't exist
+func mutantArray(_ a:[Int]) -> [Int] {
+    var b: [Int] = []
+    for i in 0..<a.count - 1 {
+        if i == 0 {
+            b.insert((a[i] + a[i+1]), at: i)
+        } else if i >= a.count - 1 {
+            b.insert((a[i] + a[i-1]), at: i)
+        } else {
+            b.insert((a[i-1] + a[i] + a[i+1]), at: i)
+        }
+    }
+    return b
+}
