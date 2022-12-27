@@ -1,0 +1,17 @@
+//___________TINY_ARRAYS_________________
+//for two equally-sized arrays 'a' and 'b' and an int 'K', iterate through a from left to right and b from right to left and return the number of "tiny pairs" ( if concatenation a[i] and b[last - i - 1] is less than < 'K')
+
+func isTinyArrays(_ a:[Int], _ b:[Int], k:Int) -> Int {
+    var answer = 0
+    let size = a.count
+    for index in 0..<size {
+        let reverseIndex = size - index - 1
+        let concatenated = "\(a[index])" + "\(b[reverseIndex])"
+        if let num = Int(concatenated) {
+            if k > num {
+                answer += 1
+            }
+        }
+    }
+    return answer
+}
