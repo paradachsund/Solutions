@@ -1,0 +1,17 @@
+//_____________TRIPLE_ZIGZAG_______________
+//a triple (a,b,c) is a zigzag if a < b > c || a > b < c. Construct an array of numbers.length - 2 where the 'i'th element of the output array equals 1 if the triple
+//numbers[i], numbers[i + 1], numbers[i + 2] is a zig zag, and 0 otherwise
+
+func isZigZag(_ a:[Int]) -> [Int] {
+    var buffer: [Int] = []
+    guard !a.isEmpty else {return buffer}
+    var lastIndex = a.count - 1
+    for i in 1..<lastIndex {
+        if a[i - 1] > a[i] && a[i + 1] < a[i] || a[i - 1] < a[i] && a[i + 1] > a[i] {
+            buffer.append(1)
+        } else {
+            buffer.append(0)
+        }
+    }
+    return buffer
+}
